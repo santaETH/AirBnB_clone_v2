@@ -12,7 +12,9 @@ env.hosts = ['23.23.75.93', '34.204.61.231']
 env.user = 'ubuntu'
 env.key_filename = '~/.ssh/school'
 
+
 def do_clean(number=0):
+
     """Delete out-of-date archives.
     Args:
         number (int): The number of archives to keep.

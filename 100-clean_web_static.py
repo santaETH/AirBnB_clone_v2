@@ -23,14 +23,12 @@ def do_clean(number=0):
     number = 1 if int(number) == 0 else int(number)
 
     archives = sorted(os.listdir("versions"))
-    archives_to_delete = archives[:-number]
+    [archives.pop() for i in range(number)]
     with lcd("versions"):
-        for archive in archives_to_delete:
-            local("rm ./{}".format(archive))
+        [local("rm ./{}".format(a)) for a in archives]
 
     with cd("/data/web_static/releases"):
         archives = run("ls -tr").split()
         archives = [a for a in archives if "web_static_" in a]
-        archives_to_delete = archives[:-number]
-        for archive in archives_to_delete:
-            run("rm -rf ./{}".format(archive))
+        [archives.pop() for i in range(number)]
+        [run("rm -rf ./{}".format(a)) for a in archives]
